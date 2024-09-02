@@ -2,7 +2,7 @@ from aiogram import types
 
 import yaml
 import os
-import config
+from app import config
 
 
 class Provider:
@@ -40,3 +40,4 @@ class Provider:
         image_path = os.path.join(cls.DIRS['images'], file_name)
 
         return types.FSInputFile(path=image_path)
+

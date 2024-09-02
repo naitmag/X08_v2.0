@@ -1,6 +1,8 @@
 ### Command /start
 start:
+
   img: start.jpg
+  
   text:
     "<blockquote><b>Добро пожаловать в X08itc v2.0!</b></blockquote>
     
@@ -14,6 +16,9 @@ start:
   
   
     <b>Команды: /help</b>"
+
+schedule:
+  text: 'Расписание на неделю'
 
 
 
