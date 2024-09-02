@@ -1,3 +1,5 @@
-.venv
+bot/.venv
 .idea
 .env
+test.py
+bot/database/*.db
