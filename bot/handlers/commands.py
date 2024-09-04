@@ -19,4 +19,5 @@ async def cmd_start(message: Message):
 @router.message(F.chat.type == ChatType.PRIVATE, Command('schedule', 's'))
 async def cmd_schedule(message: Message):
     text = Provider.get_text('messages.schedule.text')
+    text += Provider.get_config_value('lessons.time.0')
     await message.answer(text)

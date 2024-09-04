@@ -20,6 +20,26 @@ messages:
 
   schedule:
     text: 'Расписание на неделю'
+    days:
+      '0':
+        name: 'Понедельник'
+        emoji: ''
+      '1':
+        name: 'Вторник'
+        emoji: ''
+      '2':
+        name: 'Среда'
+        emoji: ''
+      '3':
+        name: 'Четверг'
+        emoji: ''
+      '4':
+        name: 'Пятница'
+        emoji: ''
+      '5':
+        name: 'Суббота'
+        emoji: ''
+
 
 
 

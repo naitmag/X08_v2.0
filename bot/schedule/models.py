@@ -1,5 +1,6 @@
 from app.models import Models
 from app.config import LESSONS_PATH
+from app.utils import Provider
 
 
 class LessonsManager:
@@ -22,7 +23,7 @@ class LessonsManager:
 
                     items = lesson.split('\n')
                     for item in items:
-                        if item != '-':
+                        if item != Provider.get_config_value('lessons.empty_lesson_field'):
 
                             current_lesson = Lesson()
                             current_lesson.name, current_lesson.teacher = item.split('"')[1:]
@@ -68,4 +69,7 @@ class Week:
 
     # TODO
     def format_schedule(self):
-        pass
+        result = f"Расписание на неделю {self.number}"
+        day = 0
+        for lesson in self.lessons:
+            pass

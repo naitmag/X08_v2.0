@@ -8,11 +8,12 @@ from app import config
 class Provider:
     DEFAULT_LOCALE = 'ru'
     DIRS = config.DIRS
+    CONFIG = config.CONFIG_PATH
 
     @classmethod
-    def __get_data(cls, value: str, locale: str = DEFAULT_LOCALE):
-        source_file = f"{locale}.yml"
-        path = os.path.join(cls.DIRS['locales'], source_file)
+    def __get_data(cls, path: str, source_file: str, value: str):
+        if source_file:
+            path = os.path.join(path, source_file)
 
         try:
             with open(path, 'r', encoding='utf-8') as f:
@@ -23,8 +24,9 @@ class Provider:
         keys = value.split('.')
 
         for key in keys:
-
+            print(key)
             response = response.get(key, None)
+            print(response)
             if response is None:
                 return 'None'
 
@@ -32,12 +34,16 @@ class Provider:
 
     @classmethod
     def get_text(cls, value: str, locale: str = DEFAULT_LOCALE):
-        return str(cls.__get_data(value, locale))
+        source_file = f"{locale}.yml"
+        return str(cls.__get_data(cls.DIRS['locales'], source_file, value))
 
     @classmethod
     def get_image(cls, value: str, locale: str = DEFAULT_LOCALE):
-        file_name = cls.__get_data(value, locale)
+        file_name = cls.get_text(value, locale)
         image_path = os.path.join(cls.DIRS['images'], file_name)
 
         return types.FSInputFile(path=image_path)
 
+    @classmethod
+    def get_config_value(cls, value: str):
+        return cls.__get_data(cls.CONFIG, None, value)
