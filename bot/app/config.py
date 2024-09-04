@@ -11,7 +11,9 @@ DIRS = {
     'locales': os.path.join('locales'),
     'images': os.path.join('templates', 'img'),
 }
-DATABASE = os.path.join('database', 'database.db')
+
+DATABASE_PATH = os.path.join('database', 'database.db')
+LESSONS_PATH = os.path.join('templates', 'lessons', 'lessons.txt')
 
 TABLES = {
     'lesson':

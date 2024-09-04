@@ -9,7 +9,7 @@ class Models:
     @staticmethod
     def __execute__(query: str, values=()):
 
-        with sqlite3.connect(config.DATABASE) as con:
+        with sqlite3.connect(config.DATABASE_PATH) as con:
             cur = con.cursor()
             data = cur.execute(query, values)
 
