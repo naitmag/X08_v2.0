@@ -3,3 +3,4 @@ bot/.venv
 .env
 test.py
 bot/database/*.db
+bot/templates/lessons/lessons.txt
