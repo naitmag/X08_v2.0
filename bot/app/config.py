@@ -20,7 +20,7 @@ TABLES = {
     'lesson':
         """
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT NOT NULL,
+        lesson_type TEXT NOT NULL,
         name TEXT NOT NULL,
         day INTEGER NOT NULL,
         lesson_number INTEGER NOT NULL,

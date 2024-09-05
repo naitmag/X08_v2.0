@@ -24,9 +24,10 @@ class Provider:
         keys = value.split('.')
 
         for key in keys:
-            print(key)
+            if key.isdigit():
+                key = int(key)
             response = response.get(key, None)
-            print(response)
+
             if response is None:
                 return 'None'
 

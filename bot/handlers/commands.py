@@ -4,6 +4,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 
 from app.utils import Provider
+from schedule.models import Week
 
 router = Router()
 router.message.filter(~F.forward_from & ~F.forward_from_chat)
@@ -18,6 +19,11 @@ async def cmd_start(message: Message):
 
 @router.message(F.chat.type == ChatType.PRIVATE, Command('schedule', 's'))
 async def cmd_schedule(message: Message):
-    text = Provider.get_text('messages.schedule.text')
-    text += Provider.get_config_value('lessons.time.0')
+    args = message.text.split()
+    if len(args) <2:
+        week_number = 1
+    else:
+        week_number = args[1]
+    week = Week(week_number)
+    text = week.format_schedule()
     await message.answer(text)

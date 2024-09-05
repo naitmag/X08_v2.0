@@ -18,9 +18,10 @@ class Models:
             except sqlite3.ProgrammingError as _ex:
                 return _ex
 
-    def __create_table__(self, params: str):
-        query = f"CREATE TABLE IF NOT EXISTS {self.__db_table__} ({params});"
-        return self.__execute__(query)
+    @classmethod
+    def __create_table__(cls):
+        query = f"CREATE TABLE IF NOT EXISTS {cls.__db_table__} ({config.TABLES[cls.__db_table__]});"
+        return cls.__execute__(query)
 
     def save(self):
 
@@ -53,7 +54,6 @@ class Models:
         objects_filter = " AND ".join(filters)
 
         query = f"SELECT * FROM {cls.__db_table__} WHERE {objects_filter};"
-        print(query)
         return cls.__execute__(query, values)
 
     def remove(self):
