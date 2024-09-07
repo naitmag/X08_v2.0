@@ -4,3 +4,4 @@ bot/.venv
 test.py
 bot/database/*.db
 bot/templates/lessons/lessons.txt
+__pycache__

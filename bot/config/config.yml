@@ -1,6 +1,10 @@
 lessons:
-  empty_lesson_field: '-'
+  start:
+    # Study start date in dd.mm.YYYY format
+    '02.09.2024'
+  empty_lesson_field: '-'  # Empty lesson in raw txt file
   time:
+    # Time in 24-hour format (hh:MM)
     0: "8:30"
     1: "10:05"
     2: "12:00"
