@@ -4,8 +4,14 @@ from app import config
 
 
 class Models:
+    """
+        Base model for SQL entities.
+    """
+
+    # SQL table name
     __db_table__ = ''
 
+    # A private SQLite execute method
     @staticmethod
     def __execute__(query: str, values=()):
 
@@ -18,16 +24,19 @@ class Models:
             except sqlite3.ProgrammingError as _ex:
                 return _ex
 
+    # A private SQLite create table method
     @classmethod
     def __create_table__(cls):
         query = f"CREATE TABLE IF NOT EXISTS {cls.__db_table__} ({config.TABLES[cls.__db_table__]});"
         return cls.__execute__(query)
 
     def save(self):
-
-        vars = self.__dict__
-        keys = list(vars.keys())
-        values = list(vars.values())
+        """
+            Saves entity in the database.
+        """
+        variables = self.__dict__
+        keys = list(variables.keys())
+        values = list(variables.values())
 
         columns = ', '.join(keys)
 
@@ -38,6 +47,13 @@ class Models:
 
     @classmethod
     def get(cls, **kwargs):
+        """
+            Retrieves data from the database based on specified filters.
+
+                Args:
+                    *kwargs: A dictionary containing column names as keys and values as filters.
+        """
+
         filters = []
         values = []
 
@@ -54,7 +70,11 @@ class Models:
         objects_filter = " AND ".join(filters)
 
         query = f"SELECT * FROM {cls.__db_table__} WHERE {objects_filter};"
+
         return cls.__execute__(query, values)
 
     def remove(self):
+        """
+        Deletes a record from the database.
+        """
         ...

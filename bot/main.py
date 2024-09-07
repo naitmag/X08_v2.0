@@ -8,6 +8,7 @@ from app import config
 from aiogram import Bot, Dispatcher
 from handlers import commands
 
+# Bot initiation
 bot = Bot(
     config.SECRET_TOKEN,
     default=DefaultBotProperties(
@@ -19,6 +20,7 @@ bot = Bot(
 async def main():
     dp = Dispatcher()
 
+    # Register handlers
     dp.include_routers(
         commands.router
     )
